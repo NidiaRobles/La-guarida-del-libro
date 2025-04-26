@@ -1,133 +1,142 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>La Guarida del Libro</title>
-  <style>
-    body {
-      font-family: 'Georgia', serif;
-      margin: 0;
-      background-color: #fffdf7;
-      color: #3b2f2f;
-    }
-    header {
-      background-color: #8d6748;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-    nav a {
-      margin: 0 1rem;
-      color: white;
-      text-decoration: none;
-    }
-    section {
-      padding: 2rem;
-    }
-  </style>
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
-<header>
-  <h1>La Guarida del Libro</h1>
-  <nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#catalogo">Catálogo</a>
-    <a href="#guarida-lectores">Club de Lectura</a>
-    <a href="#registro-login">Iniciar Sesión</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
-</header>
-
-<section id="registro-login">
-  <h2>Registro e Inicio de Sesión</h2>
-  <div style="display: flex; gap: 2rem;">
-    <div>
-      <h3>Registrarse</h3>
-      <input type="text" id="reg-nombre" placeholder="Nombre"><br>
-      <input type="email" id="reg-email" placeholder="Email"><br>
-      <input type="password" id="reg-pass" placeholder="Contraseña"><br>
-      <button onclick="registrarUsuario()">Registrar</button>
-    </div>
-    <div>
-      <h3>Iniciar Sesión</h3>
-      <input type="email" id="login-email" placeholder="Email"><br>
-      <input type="password" id="login-pass" placeholder="Contraseña"><br>
-      <button onclick="iniciarSesion()">Ingresar</button>
-    </div>
-  </div>
-  <p id="mensaje-login"></p>
-
-  <div id="contenido-exclusivo" style="display: none; margin-top: 1rem;">
-    <h3>🎁 Promociones Exclusivas</h3>
-    <ul>
-      <li>📚 2x1 en libros seleccionados de Romance durante esta semana</li>
-      <li>🎟️ Acceso gratuito al próximo club de lectura premium</li>
-      <li>💌 Newsletter con recomendaciones personalizadas</li>
-    </ul>
-    <button onclick="cerrarSesion()">Cerrar Sesión</button>
-  </div>
-</section>
-
-<footer style="background-color: #f0e6dc; padding: 2rem; text-align: center; font-family: 'Georgia', serif; border-top: 4px solid #c8b6a6;">
-  <div style="max-width: 800px; margin: auto;">
-    <h3 style="margin-bottom: 0.5rem;">📚 La Guarida del Libro 📖</h3>
-    <p style="font-style: italic; margin-bottom: 1rem;">Un rincón mágico para lectores curiosos y soñadores.</p>
-    <nav style="margin-bottom: 1rem;">
-      <a href="#inicio" style="margin: 0 1rem; text-decoration: none; color: #5a3e36;">Inicio</a>
-      <a href="#catalogo" style="margin: 0 1rem; text-decoration: none; color: #5a3e36;">Catálogo</a>
-      <a href="#guarida-lectores" style="margin: 0 1rem; text-decoration: none; color: #5a3e36;">Club de Lectura</a>
-      <a href="#contacto" style="margin: 0 1rem; text-decoration: none; color: #5a3e36;">Contacto</a>
+  <header>
+    <h1>La Guarida del Libro</h1>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#libros-mes">Libros del Mes</a>
+      <a href="#infantil">Infantil</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#guarida-lectores">Guarida de Lectores</a>
+      <a href="#contacto">Contacto</a>
     </nav>
-    <div style="margin-bottom: 1rem;">
-      <a href="https://www.facebook.com" target="_blank" style="margin: 0 0.5rem;">📘 Facebook</a>
-      <a href="https://www.instagram.com" target="_blank" style="margin: 0 0.5rem;">📸 Instagram</a>
-      <a href="https://wa.me/0000000000" target="_blank" style="margin: 0 0.5rem;">💬 WhatsApp</a>
+  </header>
+
+  <section id="inicio">
+    <h2>Bienvenidos a La Guarida del Libro</h2>
+    <p>Descubre un universo de historias y aventuras.</p>
+  </section>
+
+  <section id="libros-mes">
+    <h2>Libros del Mes</h2>
+    <p>Selección especial de libros recomendados para este mes.</p>
+  </section>
+
+  <section id="infantil">
+    <h2>Sección Infantil</h2>
+    <p>Libros especialmente seleccionados para nuestros pequeños lectores.</p>
+  </section>
+
+  <section id="catalogo">
+    <h2>Catálogo de Libros</h2>
+
+    <div class="categoria">
+      <h3>Suspenso</h3>
+      <div class="libro">
+        <h4>El psicoanalista</h4>
+        <p>John Katzenbach</p>
+        <button onclick="agregarAlCarrito('El psicoanalista')">Añadir al carrito</button>
+      </div>
+      <div class="libro">
+        <h4>La chica del tren</h4>
+        <p>Paula Hawkins</p>
+        <button onclick="agregarAlCarrito('La chica del tren')">Añadir al carrito</button>
+      </div>
     </div>
-    <p style="font-size: 0.9rem; color: #7a6652;">© 2025 La Guarida del Libro. Todos los derechos reservados. Diseñado con 💛 para lectores.</p>
-  </div>
-</footer>
 
-<script>
-  function registrarUsuario() {
-    const nombre = document.getElementById("reg-nombre").value;
-    const email = document.getElementById("reg-email").value;
-    const pass = document.getElementById("reg-pass").value;
+    <div class="categoria">
+      <h3>Biografías</h3>
+      <div class="libro">
+        <h4>Steve Jobs</h4>
+        <p>Walter Isaacson</p>
+        <button onclick="agregarAlCarrito('Steve Jobs')">Añadir al carrito</button>
+      </div>
+      <div class="libro">
+        <h4>Yo soy Malala</h4>
+        <p>Malala Yousafzai</p>
+        <button onclick="agregarAlCarrito('Yo soy Malala')">Añadir al carrito</button>
+      </div>
+    </div>
 
-    if (!nombre || !email || !pass) {
-      alert("Por favor completa todos los campos de registro.");
-      return;
-    }
+    <div class="categoria">
+      <h3>Romance</h3>
+      <div class="libro">
+        <h4>Orgullo y prejuicio</h4>
+        <p>Jane Austen</p>
+        <button onclick="agregarAlCarrito('Orgullo y prejuicio')">Añadir al carrito</button>
+      </div>
+      <div class="libro">
+        <h4>Bajo la misma estrella</h4>
+        <p>John Green</p>
+        <button onclick="agregarAlCarrito('Bajo la misma estrella')">Añadir al carrito</button>
+      </div>
+    </div>
 
-    localStorage.setItem("usuario", JSON.stringify({ nombre, email, pass }));
-    alert("¡Registro exitoso! Ahora puedes iniciar sesión.");
-  }
+    <div class="categoria">
+      <h3>Ficción</h3>
+      <div class="libro">
+        <h4>Cien años de soledad</h4>
+        <p>Gabriel García Márquez</p>
+        <button onclick="agregarAlCarrito('Cien años de soledad')">Añadir al carrito</button>
+      </div>
+      <div class="libro">
+        <h4>1984</h4>
+        <p>George Orwell</p>
+        <button onclick="agregarAlCarrito('1984')">Añadir al carrito</button>
+      </div>
+    </div>
+  </section>
 
-  function iniciarSesion() {
-    const email = document.getElementById("login-email").value;
-    const pass = document.getElementById("login-pass").value;
-    const usuario = JSON.parse(localStorage.getItem("usuario"));
+  <section id="guarida-lectores">
+    <h2>Guarida de Lectores</h2>
+    <p>Únete a nuestro club de lectura y participa en nuestras actividades.</p>
 
-    const mensaje = document.getElementById("mensaje-login");
-    const promociones = document.getElementById("contenido-exclusivo");
+    <div id="calendario">
+      <h3>Calendario de Actividades</h3>
+      <!-- Aquí iría tu calendario -->
+    </div>
+  </section>
 
-    if (usuario && usuario.email === email && usuario.pass === pass) {
-      mensaje.textContent = `¡Bienvenido/a, ${usuario.nombre}!`;
-      promociones.style.display = "block";
-    } else {
-      mensaje.textContent = "Credenciales incorrectas.";
-      promociones.style.display = "none";
-    }
-  }
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p>¿Tienes dudas? Contáctanos por WhatsApp.</p>
+    <a href="https://wa.me/XXXXXXXXXX" target="_blank">Enviar WhatsApp</a>
+  </section>
 
-  function cerrarSesion() {
-    document.getElementById("mensaje-login").textContent = "Has cerrado sesión.";
-    document.getElementById("contenido-exclusivo").style.display = "none";
-  }
-</script src="script.js"></script>
+  <section id="registro">
+    <h2>Registrarse</h2>
+    <input type="text" id="reg-nombre" placeholder="Nombre">
+    <input type="email" id="reg-email" placeholder="Correo electrónico">
+    <input type="password" id="reg-pass" placeholder="Contraseña">
+    <button onclick="registrarUsuario()">Registrarse</button>
+  </section>
 
+  <section id="login">
+    <h2>Iniciar Sesión</h2>
+    <input type="email" id="login-email" placeholder="Correo electrónico">
+    <input type="password" id="login-pass" placeholder="Contraseña">
+    <button onclick="iniciarSesion()">Iniciar Sesión</button>
+    <p id="mensaje-login"></p>
+    <button onclick="cerrarSesion()">Cerrar Sesión</button>
 
+    <div id="contenido-exclusivo" style="display:none;">
+      <h3>Contenido Exclusivo</h3>
+      <p>Promociones y actividades especiales para usuarios registrados.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 La Guarida del Libro. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
